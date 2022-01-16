@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">  
+ <head>     
+ 	<title>Demo :: POI</title>   
+ 	
+ 	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  	
+ </head>   
+ <body>     
+ 	<h1>The data of the table <span th:text="${tname}" class="text-info"></span>:</h1>     
+  	
+ 	<div style="float:right;margin-right: 10%;font-size:33px;">
+ 		<a style="text-decoration:none;" th:href="@{/database}" >
+ 				GO BACK
+ 		</a>
+ 	</div>
+ 	
+ 	
+		    <div class="container-fluid">
+		        <div class="row">
+		            <div class="col-12 mx-auto">
+		              <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+		              
+		              <div class="table-responsive">
+			              <table class="table table-striped ">
+			              	 <thead class="thead-dark ">
+							    <tr>
+							    	<th th:each = "colName : ${allData.columns}">
+							    		<span th:text="${colName}"></span>
+							    	</th> 
+							    </tr>
+			              	 </thead>
+			              	 <tbody th:each = "map : ${allData.data}">
+			              	 	   	
+			              	 	   		<tr>
+			              	 	   			<td th:each="e : ${map}">
+			              	 	   				<span th:text="${e.value}"></span>
+			              	 	   			</td>
+			              	 	   		</tr>
+			              	 	   	
+			              	 </tbody>
+			              </table>
+		            
+		            </div>
+		        </div>
+		    </div>
+ 	
+ 	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+ 		
+ </body> 
+ </html>

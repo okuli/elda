@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">  
+ <head>     
+ 	<title>Demo :: POI</title>   
+ 	
+ 	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  	
+ </head>   
+ <body>     
+ 	<h1>The tables created due to uploading of excel files are:</h1>     
+  	
+ 	<div style="float:right;margin-right: 10%;font-size:33px;">
+ 		<a style="text-decoration:none;" th:href="@{/}" >
+ 				GO BACK
+ 		</a>
+ 	</div>
+ 	
+ 	<section class="my-5">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-md-8 mx-auto">
+		              <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+		              
+		              <div class="table-responsive">
+			              <table class="table table-striped ">
+			              	 <thead class="thead-dark ">
+							    <tr>
+							        <th>Serial No.</th>
+							        <th>Table Name</th>
+							        <th>View</th>
+							    </tr>
+			              	 </thead>
+			              	 <tbody>
+							    <tr th:if="${#lists.isEmpty(tableNames)}">
+								  <td colspan="3">Sorry. No excel files uploaded</td>
+								</tr>
+							    
+							    <tr th:each = "tableName,iterationStatus : ${tableNames}">
+							        <td th:text="${iterationStatus.count}"></td>
+							        <td th:text="${tableName.table_name}"></td>
+							        <td>
+							        	<a th:href="@{/tableData/{tablename}(tablename=${tableName.table_name})}"
+							        	
+							        	class="btn btn-info"	
+							            >
+							            View Uploaded Data
+							        	</a>
+							        </td>
+							    </tr>
+			              	 </tbody>
+						</table>
+		            </div>  
+		            
+		            </div>
+		        </div>
+		    </div>
+ 	</section>
+
+ 	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+ 		
+ </body> 
+ </html>
